@@ -1,1 +1,1 @@
-["sbt.Task[scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]",{"hashes":[["/home/sebastian/IdeaProjects/crud-simpe-akka-http-circe-seguros/build.sbt","f4d1bccb6274fcc5a67bb7ebde554d91084365ec"]],"lastModifiedTimes":[]}]
+["sbt.Task[scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]",{"hashes":[["/home/sebastian/IdeaProjects/crud-simpe-akka-http-circe-seguros/build.sbt","5271cb2a5bad01ddaa41cb40e4ecb75af90622b8"]],"lastModifiedTimes":[]}]
