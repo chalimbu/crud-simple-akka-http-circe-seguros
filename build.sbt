@@ -14,5 +14,7 @@ libraryDependencies ++= Seq(
   "io.circe" %% "circe-parser" % circeVersion,
   "de.heikoseeberger" %% "akka-http-circe" % "1.29.1",
   "org.reactivemongo" %% "reactivemongo" % "0.18.6",
-  "io.monix" %% "monix" % "3.0.0"
+  "io.monix" %% "monix" % "3.0.0",
+
+  "ch.qos.logback" % "logback-classic" % "1.2.3"
 )

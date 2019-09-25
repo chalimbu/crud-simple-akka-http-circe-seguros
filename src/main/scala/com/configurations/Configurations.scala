@@ -2,6 +2,8 @@ package com.configurations
 
 object Configurations {
   val host="localhost:27017"
-  val db="music"
-  val collection="artists"
+  val hostWithoutPort="localhost"
+  val db="akkacirce"
+  val collection="Policyes"
+  val port=9090
 }

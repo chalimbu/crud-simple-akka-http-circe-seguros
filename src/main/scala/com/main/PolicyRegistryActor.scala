@@ -1,6 +1,8 @@
 package com.main
 //#user-registry-actor
-import akka.actor.{ Actor, ActorLogging, Props }
+import akka.actor.{Actor, ActorLogging, Props}
+import monix.execution.CancelableFuture
+import reactivemongo.api.commands.WriteResult
 
 //#user-case-classes
 final case class Policy(owner: String, creditor: String, scope: Option[String])
@@ -22,9 +24,9 @@ class PolicyRegistryActor extends Actor with ActorLogging {
     case GetPolicies =>
       sender() ! PolicyMongoManagement.getPolicy()
       //sender() ! Users(users.toSeq)
-    case CreatePolicies(user) =>{
-      val result=PolicyMongoManagement.addPolicy(user)
-      sender() ! ActionPerformed(s"{result}")}
+    case CreatePolicies(policy) =>{
+      PolicyMongoManagement.addPolicy(policy)
+      sender() ! ActionPerformed(s"policy save for ${policy.owner}")}
     case DeletePolicy(owner) =>{
       //users.find(_.name == name) foreach { user => users -= user }
       val result=PolicyMongoManagement.deletePolicy(owner)

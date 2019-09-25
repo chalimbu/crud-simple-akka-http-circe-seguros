@@ -5,7 +5,7 @@ final case class ApiErrorConfig private(statusCode: StatusCode, message: String)
 
 object ApiErrorConfig {
   private def apply(statusCode: StatusCode, message: String): ApiErrorConfig = {
-    new ApiError(statusCode, message)
+    new ApiErrorConfig(statusCode, message)
   }
   val generic: ApiErrorConfig =
     new ApiErrorConfig(StatusCodes.InternalServerError, "Unknown error.")

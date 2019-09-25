@@ -9,8 +9,7 @@ import scala.concurrent.Future
 // Task is in monix.eval
 import monix.eval.Task
 import monix.execution.Scheduler.Implicits.global
-
-
+import akka.http.scaladsl.server
 object PolicyMongoManagement {
   private def getConnection():Task[BSONCollection]={
     val mongoUri = s"mongodb://${Configurations.host}/${Configurations.db}"
@@ -40,10 +39,14 @@ object PolicyMongoManagement {
 
   def simpleInsert(coll: Task[BSONCollection], document: BSONDocument): Task[WriteResult] = {
     coll.flatMap(x => {
-      Task.fromFuture(x.insert.one(document))
+      Task.fromFuture(x.insert.one(document)).onErrorHandleWith {
+        case exception: Exception => {
+          println("no fue posible la insercion por:", Some(exception), getClass)
+          Task.raiseError(exception)
+        }
+      }
     })
   }
-
 
 
   def getPolicy()= ???
@@ -54,6 +57,7 @@ object PolicyMongoManagement {
       "scope"->policy.scope.getOrElse(null))
     simpleInsert(this.getConnection(), document)
       .runToFuture
+
   }
   def deletePolicy(owner: String)= ???
 }
